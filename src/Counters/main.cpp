@@ -39,10 +39,21 @@ int main(int argc, char ** argv) {
 		//cout << counter3.value() << endl;
 	}
 
-
 	cout << counter3.value() << endl;
 	counter3.reset();
 	cout << counter3.value() << endl;
+
+	// Task 3. CounterGenerator
+	COUNTER_GENERATOR<int, with_bound, with_increment, IntValue<0>, IntValue<100>, IntValue<3>>::RET counter4;
+
+	for (int i = 0; i < 50; i++) {
+		counter4.increment();
+		cout << counter4.value() << endl;
+	}
+
+	cout << counter4.value() << endl;
+	counter4.reset();
+	cout << counter4.value() << endl;
 
 
 

@@ -33,10 +33,19 @@ private:
 		isStepSized = incrementFlag == with_increment,
 	};
 
-	typedef typename IF<isBound,
-		BoundedCounter<Counter<BoundedCounterConfig<ValueType_, Init_, Bound_>>>,
-		Counter<CounterConfig<ValueType_, Init_>>
-	>::RET Counter_with_bounds;
+	typedef typename 
+	IF<isBound,
+		IF<
+			isStepSized,	
+			VarIncrementBoundedCounter<Counter<VarIncrementBoundedCounterConfig<ValueType_, Init_, Bound_, Step_>>>,
+			BoundedCounter<Counter<BoundedCounterConfig<ValueType_, Init_, Bound_>>>
+		>,
+		IF<
+			isBound,
+			BoundedCounter<Counter<VarIncrementBoundedCounterConfig<ValueType_, Init_, Bound_, Step_>>>,
+			Counter<CounterConfig<ValueType_, Init_>>
+		>
+	>::RET::RET Counter_with_bounds;
 
 public:
 	typedef Counter_with_bounds RET;

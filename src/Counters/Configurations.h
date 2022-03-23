@@ -39,3 +39,13 @@ struct VarIncrementCounterConfig {
 
 	typedef VarIncrementCounter<Counter<VarIncrementCounterConfig>> Counter;
 };
+
+template<typename ValueType_, typename Init_, typename Bound_, typename StepSize_>
+struct VarIncrementBoundedCounterConfig {
+	typedef ValueType_ ValueType;
+	typedef Init_ Init;
+	typedef Bound_ Bound;
+	typedef StepSize_ StepSize;
+
+	typedef VarIncrementBoundedCounter<Counter<VarIncrementBoundedCounterConfig>> Counter;
+};
