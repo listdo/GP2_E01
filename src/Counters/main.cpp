@@ -9,8 +9,6 @@
 using namespace std;
 
 int main(int argc, char ** argv) {
-	//CounterConfig<int, IntValue<0>>::Counter counter;
-	//CounterConfig<double, DoubleValue_0_5>::Counter counter;
 	BoundedCounterConfig<int, IntValue<0>, IntValue<3>>::Counter counter;
 
 	cout << counter.value() << endl;
@@ -36,7 +34,7 @@ int main(int argc, char ** argv) {
 
 	for (int i = 0; i < 20; i++) {
 		counter3.increment();
-		//cout << counter3.value() << endl;
+		cout << counter3.value() << endl;
 	}
 
 	cout << counter3.value() << endl;
@@ -54,8 +52,6 @@ int main(int argc, char ** argv) {
 	cout << counter4.value() << endl;
 	counter4.reset();
 	cout << counter4.value() << endl;
-
-
 
 	return 0;
 }
