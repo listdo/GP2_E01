@@ -11,33 +11,37 @@ enum IncrementFlag { with_increment, no_increment };
 template <
 	class ValueType_,
 	BoundFlag boundFlag = no_bound,
+	IncrementFlag incrementFlag = no_increment,
 	class Init_ = int,
-	class Bound_ = int
+	class Bound_ = int,
+	class Step_ = int
 >
 class COUNTER_GENERATOR {
 public:
 	typedef COUNTER_GENERATOR<
 		ValueType_,
 		boundFlag,
+		incrementFlag,
 		Init_,
-		Bound_
+		Bound_,
+		Step_
 	> Generator;
 
 private:
 	enum { 
-		isBound = boundFlag == with_bound 
+		isBound = boundFlag == with_bound,
+		isStepSized = incrementFlag == with_increment,
 	};
 
-	typedef IF<isBound,
+	typedef typename IF<isBound,
 		BoundedCounter<Counter<BoundedCounterConfig<ValueType_, Init_, Bound_>>>,
 		Counter<CounterConfig<ValueType_, Init_>>
-	>::RET Counter;
+	>::RET Counter_with_bounds;
 
 public:
-	typedef Counter_ RET;
+	typedef Counter_with_bounds RET;
 
 	struct Config {
-		typedef Counter_ Counter;
-		typedef RET ReturnType;
+		typedef RET Counter;
 	};
 };

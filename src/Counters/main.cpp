@@ -31,15 +31,18 @@ int main(int argc, char ** argv) {
 	cout << counter2.value() << endl;
 
 
-	//COUNTER_GENERATOR<int, no_bound, IntValue<5>>::Generator generator;
-	COUNTER_GENERATOR<int, no_bound, IntValue<10>, IntValue<0>>::Config::Counter counter3;
+	// Task 3. CounterGenerator
+	COUNTER_GENERATOR<int, no_bound, no_increment, IntValue<10>, IntValue<0>, IntValue<1>>::RET counter3;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 20; i++) {
 		counter3.increment();
+		//cout << counter3.value() << endl;
+	}
 
-	//cout << counter3.value() << endl;
-	//counter2.reset();
-	//cout << counter3.value() << endl;
+
+	cout << counter3.value() << endl;
+	counter3.reset();
+	cout << counter3.value() << endl;
 
 
 
